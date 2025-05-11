@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdShield Pro - Advanced Ad Blocker</title>
+    <style>
+        :root {
+            --primary: #00FF66;
+            --primary-dark: #00D455;
+            --primary-glow: rgba(0, 255, 102, 0.6);
+            --secondary: #121212;
+            --dark: #0A0A0A;
+            --light: #1E1E1E;
+            --text: #E0E0E0;
+            --text-muted: #B0B0B0;
+            --card-bg: #1A1A1A;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--dark);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(0, 255, 102, 0.2);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: var(--primary);
+            text-shadow: 0 0 10px var(--primary-glow);
+        }
+        
+        .logo-icon {
+            margin-right: 10px;
+            font-size: 1.8rem;
+            filter: drop-shadow(0 0 5px var(--primary-glow));
+        }
+        
+        main {
+            padding: 2rem 0;
+            background: radial-gradient(circle at 50% 0%, rgba(0, 255, 102, 0.05), transparent 70%);
+        }
+        
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 5rem 1rem 3rem;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary-glow), transparent);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text);
+            text-shadow: 0 0 15px rgba(0, 255, 102, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            color: var(--text-muted);
+        }
+        
+        .cta-button {
+            background-color: var(--primary);
+            color: #000;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px var(--primary-glow);
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .cta-button:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px var(--primary-glow);
+        }
+        
+        .cta-button svg {
+            margin-right: 10px;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 3rem 1rem;
+        }
+        
+        .feature {
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(0, 255, 102, 0.1);
+        }
+        
+        .feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4), 0 0 15px rgba(0, 255, 102, 0.2);
+            border-color: rgba(0, 255, 102, 0.3);
+        }
+        
+        .feature-icon {
+            background-color: rgba(0, 255, 102, 0.1);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: var(--primary);
+            box-shadow: 0 0 15px rgba(0, 255, 102, 0.3);
+        }
+        
+        .feature h3 {
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            color: var(--primary);
+        }
+        
+        .faq {
+            padding: 3rem 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            color: var(--text);
+            text-shadow: 0 0 10px rgba(0, 255, 102, 0.2);
+        }
+        
+        .faq-item {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            border: 1px solid rgba(0, 255, 102, 0.1);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .faq-item:hover {
+            border-color: rgba(0, 255, 102, 0.3);
+            box-shadow: 0 0 15px rgba(0, 255, 102, 0.1);
+        }
+        
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text);
+        }
+        
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            color: var(--text-muted);
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            max-height: 500px;
+        }
+        
+        .testimonials {
+            background-color: var(--secondary);
+            padding: 4rem 1rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .testimonials::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary-glow), transparent);
+        }
+        
+        .testimonials h2 {
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            color: var(--text);
+            text-shadow: 0 0 10px rgba(0, 255, 102, 0.2);
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .testimonial {
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 255, 102, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .testimonial:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4), 0 0 15px rgba(0, 255, 102, 0.2);
+            border-color: rgba(0, 255, 102, 0.3);
+        }
+        
+        .testimonial p {
+            font-style: italic;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        footer {
+            background-color: rgba(10, 10, 10, 0.95);
+            color: var(--text-muted);
+            padding: 2rem 1rem;
+            text-align: center;
+            border-top: 1px solid rgba(0, 255, 102, 0.2);
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1rem 0;
+        }
+        
+        .footer-links a {
+            color: var(--text);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+            text-shadow: 0 0 8px var(--primary-glow);
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+            
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">🛡️</span>
+                AdShield Pro
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        <section class="hero">
+            <h1>Browse the web without annoying ads</h1>
+            <p class="subtitle">AdShield Pro is a powerful, lightweight extension that blocks ads and trackers, making your browsing experience faster, safer, and more enjoyable.</p>
+            <button id="downloadBtn" class="cta-button">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 16L7 11H10V4H14V11H17L12 16Z" fill="currentColor"/>
+                    <path d="M20 18H4V11H2V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V11H20V18Z" fill="currentColor"/>
+                </svg>
+                Download AdShield Pro
+            </button>
+        </section>
+        
+        <section class="features container">
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 1L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 1ZM12 11.99H19C18.47 16.11 15.72 19.78 12 20.93V12H5V6.3L12 3.19V11.99Z" fill="currentColor"/>
+                    </svg>
+                </div>
+                <h3>Block All Ads</h3>
+                <p>Say goodbye to annoying popup ads, video ads, and banner ads on all your favorite websites.</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 16.5L4 8.5L5.4 7.1L12 13.7L18.6 7.1L20 8.5L12 16.5Z" fill="currentColor"/>
+                    </svg>
+                </div>
+                <h3>Faster Browsing</h3>
+                <p>Enjoy up to 60% faster page load times by eliminating resource-heavy ads and trackers.</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11Z" fill="currentColor"/>
+                        <path d="M12 13C8.13 13 5 16.13 5 20V21H19V20C19 16.13 15.87 13 12 13Z" fill="currentColor"/>
+                    </svg>
+                </div>
+                <h3>Enhanced Privacy</h3>
+                <p>Stop trackers from collecting your data and protect your privacy while browsing.</p>
+            </div>
+        </section>
+        
+        <section class="faq container">
+            <h2>Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Is AdBlock Freedom really free?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, AdBlock Freedom is completely free to use. We believe everyone deserves ad-free browsing without having to pay for it.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Which browsers are supported?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>AdBlock Freedom works with all major browsers including Chrome, Firefox, Edge, Safari, and Opera.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    How do I install AdBlock Freedom?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Simply click the "Download" button, and follow the installation instructions for your browser. It takes less than 30 seconds to install!</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Will AdBlock Freedom slow down my browser?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>No, in fact it's the opposite! By blocking ads and unnecessary scripts, AdBlock Freedom actually makes your browsing experience faster and uses less system resources.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="testimonials">
+            <h2>What Our Users Say</h2>
+            
+            <div class="testimonial-grid">
+                <div class="testimonial">
+                    <p>"I've tried many ad blockers, but AdBlock Freedom is by far the best. My browsing is significantly faster and I never see annoying ads anymore."</p>
+                    <div class="testimonial-author">- Sarah K.</div>
+                </div>
+                
+                <div class="testimonial">
+                    <p>"Easy to install and works perfectly. I can finally enjoy YouTube without constant interruptions from ads!"</p>
+                    <div class="testimonial-author">- Michael T.</div>
+                </div>
+                
+                <div class="testimonial">
+                    <p>"As someone concerned about privacy, I appreciate how AdBlock Freedom blocks trackers across the web. Highly recommended!"</p>
+                    <div class="testimonial-author">- Jamie L.</div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>© 2025 AdShield Pro. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Toggle FAQ items
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentNode;
+                faqItem.classList.toggle('active');
+                
+                // Update the plus/minus icon
+                const icon = question.querySelector('span');
+                if (faqItem.classList.contains('active')) {
+                    icon.textContent = '-';
+                } else {
+                    icon.textContent = '+';
+                }
+            });
+        });
+        
+                    // Download button functionality
+        document.getElementById('downloadBtn').addEventListener('click', () => {
+            // This is where you would normally link to your actual extension download
+            // For GitHub Pages, you might link to a .zip file or to browser extension stores
+            alert('Thank you for choosing AdShield Pro! Redirecting to download...');
+            
+            // In a real implementation, you'd redirect to the actual download URL
+            // window.location.href = 'https://your-github-download-link.com/adshield.zip';
+        });
+    </script>
+</body>
+</html>
